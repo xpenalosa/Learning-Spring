@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020 github.com/xpenalosa. Check COPYRIGHT file for usage permissions.
+ */
+
 package com.learn_spring.demo.sql_access;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller // This means that this class is a Controller
-@RequestMapping(path="/users") // This means URL's start with /demo (after Application path)
+@Controller
+@RequestMapping(path="/users") // This means URL's start with /users (after Application path)
 public class UserController {
 
     @Autowired // This means to get the bean called userRepository
@@ -19,7 +23,6 @@ public class UserController {
     @PostMapping(path="/add") // Map ONLY POST Requests
     public @ResponseBody String addNewUser (@RequestParam String name, @RequestParam String email) {
         // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
 
         User n = new User();
         n.setName(name);

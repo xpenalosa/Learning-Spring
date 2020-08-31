@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020 github.com/xpenalosa. Check COPYRIGHT file for usage permissions.
+ */
+
 package com.learn_spring.demo.sql_access;
 
 import org.springframework.data.repository.CrudRepository;

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020 github.com/xpenalosa. Check COPYRIGHT file for usage permissions.
+ */
+
 package com.learn_spring.demo.sql_access;
 
 import javax.persistence.Entity;
@@ -8,7 +12,7 @@ import javax.persistence.Id;
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
