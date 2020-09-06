@@ -27,8 +27,8 @@ package com.learn_spring.demo.helloworld.rest;
 
 public class Greeting {
 
-    private final long id;
-    private final String content;
+    private long id;
+    private String content;
 
     public Greeting(long id, String content) {
         this.id = id;
@@ -39,7 +39,23 @@ public class Greeting {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getContent() {
         return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "Greeting{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                '}';
     }
 }
