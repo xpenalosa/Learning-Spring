@@ -23,22 +23,18 @@
  *
  */
 
-package com.learn_spring.demo.helloworld.rest;
+package com.learn_spring.demo;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.concurrent.atomic.AtomicLong;
+@Controller
+public class Root implements WebMvcConfigurer {
 
-@RestController
-public class RestHelloWorldController {
-
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-
-    @GetMapping("/hello/rest")
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return new Greeting(counter.incrementAndGet(), String.format(template, name));
+    @GetMapping("/")
+    public String root(){
+        return "root";
     }
+
 }

@@ -59,7 +59,7 @@ public class Application {
         return args -> {
             // Consume REST object and log to console
             Greeting greeting = restTemplate.getForObject(
-                    "http://localhost:8080/hello_rest?name=SpringBoot", Greeting.class);
+                    "http://localhost:8080/hello/rest?name=SpringBoot", Greeting.class);
             log.info(greeting == null ? null : greeting.toString());
         };
     }
