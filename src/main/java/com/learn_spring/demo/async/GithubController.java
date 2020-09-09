@@ -27,37 +27,33 @@ package com.learn_spring.demo.async;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-@Service
-public class GitHubLookupService {
+@Controller
+public class GithubController {
 
-    private static final Logger logger = LoggerFactory.getLogger(GitHubLookupService.class);
+    private static final Logger logger = LoggerFactory.getLogger(GithubController.class);
 
-    private final RestTemplate restTemplate;
+    private final GitHubLookupService gitHubLookupService;
 
-    public GitHubLookupService(RestTemplateBuilder restTemplateBuilder) {
-        this.restTemplate = restTemplateBuilder.build();
+    public GithubController(GitHubLookupService gitHubLookupService) {
+        this.gitHubLookupService = gitHubLookupService;
     }
 
-    @Async
-    public CompletableFuture<List<CommitData>> findCommits(final String user, final String repo) {
-        logger.info("Looking up commits for " + repo);
-        String url = String.format("https://api.github.com/repos/%s/%s/commits", user, repo);
-        ResponseEntity<CommitData[]> response = restTemplate.getForEntity(url, CommitData[].class);
-        CommitData[] commitData = response.getBody();
-        // Artificial delay of 0.5s
-        // Thread.sleep(500L);
-        return CompletableFuture.completedFuture(commitData != null ? Arrays.asList(commitData) : Collections.emptyList());
+    @GetMapping("/github")
+    public String getCommitStatus(@RequestParam(value = "user", defaultValue = "xpenalosa") String user, @RequestParam(value = "repo", defaultValue = "learning-spring") String repo, Model model) throws Exception {
+        CompletableFuture<List<CommitData>> future = gitHubLookupService.findCommits(user, repo);
+        List<CommitData> commitData = future.get();
+        logger.info("Found {} commits", commitData.size());
+        model.addAttribute("user", user);
+        model.addAttribute("repo", repo);
+        model.addAttribute("commitList", commitData);
+        return "github";
     }
-
 }

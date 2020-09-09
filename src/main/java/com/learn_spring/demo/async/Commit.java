@@ -30,15 +30,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Commit {
 
-    private CommitAuthor commitAuthor;
+    private Committer committer;
     private String message;
 
-    public CommitAuthor getAuthor() {
-        return commitAuthor;
+    public Committer getCommitter() {
+        return committer;
     }
 
-    public void setAuthor(CommitAuthor commitAuthor) {
-        this.commitAuthor = commitAuthor;
+    public void setCommitter(Committer committer) {
+        this.committer = committer;
     }
 
     public String getMessage() {
@@ -52,8 +52,29 @@ public class Commit {
     @Override
     public String toString() {
         return "Commit{" +
-                "author=" + commitAuthor.toString() +
+                "committer=" + committer.toString() +
                 ", message='" + message + '\'' +
                 '}';
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public class Committer {
+
+        private String date;
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        @Override
+        public String toString() {
+            return "CommitDate{" +
+                    "date='" + date + '\'' +
+                    '}';
+        }
     }
 }

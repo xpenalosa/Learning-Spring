@@ -1,0 +1,52 @@
+body {
+    margin: auto;
+    width: 90%;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+h1 {
+    margin: auto;
+    padding: 50px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+ul {
+    list-style-type: none;
+    background: #ff9999;
+    padding: 0px 10px;
+    border-radius: 5px;
+}
+
+li {
+    background: #ccc;
+    border-radius: 5px;
+    overflow: auto;
+    margin: 20px;
+}
+
+.message {
+    font-size: 24px;
+    float: left;
+}
+
+.date {
+    float: right;
+}
+
+.author {
+    width: 100%;
+}
+
+.avatar {
+    float: left;
+    border-radius: 50%;
+    width: 30px;
+    height: auto;
+}
+
+.author p {
+    font-size: 24px;
+    margin-top: 0px;
+    padding: 10px;
+}

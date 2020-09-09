@@ -25,31 +25,45 @@
 
 package com.learn_spring.demo.async;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CommitData {
 
-@RestController
-public class AsyncController {
+    private Commit commit;
+    private RepoAuthor author;
+    private String html_url;
 
-    private static final Logger logger = LoggerFactory.getLogger(AsyncController.class);
-
-    private final GitHubLookupService gitHubLookupService;
-
-    public AsyncController(GitHubLookupService gitHubLookupService) {
-        this.gitHubLookupService = gitHubLookupService;
+    public Commit getCommit() {
+        return commit;
     }
 
-    @GetMapping("/github")
-    public List<CommitList> getCommitStatus(@RequestParam(value = "user", defaultValue = "xpenalosa") String user, @RequestParam(value = "repo", defaultValue = "learning-spring") String repo) throws Exception {
-        CompletableFuture<List<CommitList>> future = gitHubLookupService.findCommits(user, repo);
-        List<CommitList> commitLists = future.get();
-        logger.info("Found {} commits", commitLists.size());
-        return commitLists;
+    public void setCommit(Commit commit) {
+        this.commit = commit;
+    }
+
+    public RepoAuthor getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(RepoAuthor author) {
+        this.author = author;
+    }
+
+    public String getHtml_url() {
+        return html_url;
+    }
+
+    public void setHtml_url(String html_url) {
+        this.html_url = html_url;
+    }
+
+    @Override
+    public String toString() {
+        return "CommitList{" +
+                "commit=" + commit +
+                ", author=" + author +
+                ", html_url='" + html_url + '\'' +
+                '}';
     }
 }
