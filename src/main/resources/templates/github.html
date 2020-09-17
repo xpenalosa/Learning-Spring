@@ -27,8 +27,9 @@
         <link rel="stylesheet" href="/css/bootstrap_darkly.css"/>
         <link rel="stylesheet" href="/css/github.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <script src="/js/relative_time.js"></script>
     </head>
-    <body>
+    <body onload="updateTimestamps()">
         <div class="container">
             <div class="page-header" id="banner">
                 <div class="row">
@@ -47,12 +48,17 @@
                             <p th:text="${commitData.author.login}">Author</p>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title" th:text="${commitData.commit.message}">Date</h4>
-                            <p class="card-text" th:text="${commitData.commit.committer.date}"> Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h4 class="card-title" th:text="${commitData.commit.message}">Example commit message</h4>
+                            <p class="card-text" th:text="${commitData.commit.committer.date}">Example date</p>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
+        <script>
+            function updateTimestamps(){
+                document.querySelectorAll(".card-text").forEach(d => d.innerText = getRelativeTime(new Date(d.innerText)))
+            }
+        </script>
     </body>
 </html>
