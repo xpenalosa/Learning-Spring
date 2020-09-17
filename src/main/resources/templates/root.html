@@ -25,91 +25,76 @@
 
 <html>
     <head>
-        <style>
-            table {
-                border-collapse: collapse;
-            }
-            th {
-                padding-top: 12px;
-                padding-bottom: 12px;
-                padding: 8px;
-                text-align: left;
-                background-color: #4CAF50;
-                color: white;
-                border: 1px solid #ddd;
-            }
-            td {
-                border: 1px solid #ddd;
-                padding: 8px;
-            }
-            tr:nth-child(even) {background: #CCC}
-            tr:nth-child(odd) {background: #FFF}
-        </style>
+        <link rel="stylesheet" href="/css/bootstrap_darkly.css"/>
     </head>
     <body>
-        <table>
-            <tbody>
-            <tr>
-                <th>Summary</th>
-                <th>Technologies</th>
-                <th>Mappings</th>
-            </tr>
-            <tr>
-                <td>Hello world!</td>
-                <td>
-                    <p>GET, RESTful interface</p>
-                </td>
-                <td>
-                    <ul>
-                        <li><a href="/hello">Hello World</a> GET</li>
-                        <li><a href="/hello/rest">REST</a> GET
+        <div class="container">
+            <div class="page-header" id="banner">
+                <div class="row">
+                    <div class="col-lg-8 col-md-7 col-sm-6">
+                        <h1>Learning Spring</h1>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Technologies</th>
+                        <th scope="col">Mappings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-primary">
+                        <th scope="row">Hello world!</th>
+                        <td>GET, RESTful interface</td>
+                        <td>
                             <ul>
-                                <li>name</li>
+                                <li><a href="/hello">Hello World</a> GET</li>
+                                <li><a href="/hello/rest">REST</a> GET
+                                    <ul>
+                                        <li>name</li>
+                                    </ul>
+                                </li>
                             </ul>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>Scheduling tasks with a fixed rate (10 minutes). Logs current time to console.</td>
-                <td>
-                    <p>@Scheduled</p>
-                </td>
-            </tr>
-            <tr>
-                <td>RESTful creation of users via POST and listing all created users.</td>
-                <td>
-                    <p>RESTful interface, CrudRepository, Hibernate, MySQL</p>
-                </td>
-                <td>
-                    <ul>
-                        <li><a href="/users">View all users</a> GET</li>
-                        <li><a href="/users/add">Add user</a> POST
+                        </td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <th scope="row">Scheduling tasks with a fixed rate (10 minutes). Logs current time to console.</th>
+                        <td>@Scheduled</td>
+                        <td></td>
+                    </tr>
+                    <tr class="table-primary">
+                        <th scope="row">RESTful creation of users via POST and listing all created users.</th>
+                        <td>RESTful interface, CrudRepository, Hibernate, MySQL</td>
+                        <td>
                             <ul>
-                                <li>*name</li>
-                                <li>*email</li>
+                                <li><a href="/users">View all users</a> GET</li>
+                                <li><a href="/users/add">Add user</a> POST
+                                    <ul>
+                                        <li>*name</li>
+                                        <li>*email</li>
+                                    </ul>
+                                </li>
                             </ul>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <td>Github API querying via Async methods.</td>
-                <td>
-                    <p>RESTful interface, Async, Services, CompletableFuture</p>
-                </td>
-                <td>
-                    <ul>
-                        <li><a href="/github">Get commits from a repo</a> GET</li>
+                        </td>
+                    </tr>
+                    <tr class="table-secondary">
+                        <th scope="row">Github API querying via Async methods.</th>
+                        <td>RESTful interface, Async, Services, CompletableFuture</td>
+                        <td>
                             <ul>
-                                <li>*user</li>
-                                <li>*repo</li>
+                                <li><a href="/github">Get commits from a repo</a> GET</li>
+                                    <ul>
+                                        <li>*user</li>
+                                        <li>*repo</li>
+                                    </ul>
+                                </li>
                             </ul>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>
